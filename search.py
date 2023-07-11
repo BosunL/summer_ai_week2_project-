@@ -87,35 +87,37 @@ def depthFirstSearch(problem: SearchProblem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     "*** YOUR CODE HERE ***"
     visited = {}
-    frontier = {s0}
-    goal_found = Falsealse
+    my_stack = {}
+    my_stack = util.Stack()
+    goal_found = False
+
     while not goal_found:
-    node = frontier.next()
-    frontier.del(node)
-    if(g(node)):
-    goal_found = True
-    else:
-    visited.add(node)
-    for child in node.children:
-    if(not (visited.contains(child) or frontier.contains(child))):
-    frontier.add(child)
+        node = my_stack.pop()
+
+        if(g(node)):
+            goal_found = True
+        else:
+            visited.add(node)
+            for child in node.children:
+                if(not (visited.contains(child) or my_stack.contains(child))):
+                    my_stack.add(child)
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
     visited = {}
     my_queue = util.Queue()
-    goal_found = false
+    goal_found = False
+
     while not goal_found:
-    node = frontier.next()
-    frontier.del(node)
-    if(g(node)):
-    goal_found = true
-    else:
-    visited.add(node)
-    for child in node.children:
-    if(not (visited.contains(child) or frontier.contains(child))):
-    frontier.add(child)
+        node = my_queue.pop()
+        if(g(node)):
+            goal_found = True
+        else:
+            visited.add(node)
+            for child in node.children:
+                if(not (visited.contains(child) or my_queue.contains(child))):
+                    my_queue.add(child)
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
